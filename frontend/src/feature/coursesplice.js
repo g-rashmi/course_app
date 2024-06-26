@@ -1,8 +1,9 @@
  
  import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
  import axios from 'axios'; 
+ import { backend_url } from '../config';
  export const fetchCourses = createAsyncThunk('courses/fetchCourses', async () => {
-  const response = await axios.get('http://localhost:4000/courses');
+  const response = await axios.get(`${backend_url}/courses`);
   return response.data;
 });  
 const courseslice = createSlice({

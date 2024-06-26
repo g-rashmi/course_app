@@ -1,0 +1,1 @@
+export const backend_url="https://course-app-v069.onrender.com"

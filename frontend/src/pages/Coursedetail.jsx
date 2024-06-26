@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { backend_url } from '../config';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { enrollCourse } from '../feature/dashsplice';
@@ -48,7 +48,7 @@ const CourseDetailsScreen = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/courses/${courseId}`);
+        const response = await axios.get(`${backend_url}/courses/${courseId}`);
         if (response.data) {
           setCourse(response.data);
         } else {
