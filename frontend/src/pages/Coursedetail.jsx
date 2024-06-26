@@ -2,9 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { enrollCourse } from '../feature/dashsplice';
 const CourseDetailsScreen = () => {
+  const[value,setValue]=useState("Enroll Now")
+  const handleEnroll = () => {
+    if (course) {
+      dispatch(enrollCourse(course));
+      toast.success('congrats U enrolled!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      
+        });
+        setValue("Enrolled")
+    }
+  };
+  const handleenrolled =()=>{
+    toast.error('Already-Enrolled', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
   const dispatch=useDispatch(); 
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
@@ -47,6 +80,18 @@ const CourseDetailsScreen = () => {
   return ( 
 
     <>
+    <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
     <Navbar/>
     <div className="container mt-4">
     
@@ -84,9 +129,7 @@ const CourseDetailsScreen = () => {
           )}
         </div>
       </div>
-      <div className="text-center"> <button type="button" className="btn btn-primary my-3 text-center" onClick={()=>{ 
-   dispatch(enrollCourse({course}))
-         }}> ENROLL NOW</button> 
+      <div className="text-center"> <button type="button" className="btn btn-primary my-3 text-center" onClick={ value==='Enroll Now'?handleEnroll:handleenrolled}> {value}</button> 
            
            </div>
     </div>

@@ -6,11 +6,12 @@ const dashslice = createSlice({
     enrolledCourses: [],
   },
   reducers: {
-    enrollCourse: (state, action) => {
+    enrollCourse: (state, action) => { 
+      
       state.enrolledCourses.push({ ...action.payload, completed: false });
     },
     completeCourse: (state, action) => {
-      const index = state.enrolledCourses.findIndex(course => course.id === action.payload);
+      const index = state.enrolledCourses.findIndex(course => course._Id === action.payload);
       if (index !== -1) {
         state.enrolledCourses[index].completed = true;
       }
