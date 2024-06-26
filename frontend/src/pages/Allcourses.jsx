@@ -7,20 +7,21 @@ import { fetchCourses } from '../feature/coursesplice';
 function Courses() { 
   const dispatch = useDispatch();
   const courses = useSelector(state => state.courses.courses);  
-  console.log(courses);
-
   useEffect(() => {
     dispatch(fetchCourses());
-  }, [dispatch]);
+  }, [dispatch]); 
 
   return (
     <>
       <Navbar />
-      <div className="container mt-4">
-        <div className="row">
+      <div className="container">
+        <div className="row d-flex flex-wrap">
           {courses.map(course => (
-            <Card key={course.id} course={course} />
-          ))}
+            <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-4">
+              <Card course={course} />
+            </div>
+          ))} 
+          
         </div>
       </div>
     </>

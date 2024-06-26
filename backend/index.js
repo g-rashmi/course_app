@@ -45,7 +45,7 @@ app.get("/courses/:id", async (req, res) => {
       return res.status(404).json({ message: "Course not found" });
     }
 
-    res.status(200).json({ id: docSnapshot.id, ...docSnapshot.data() });
+    res.status(200).json({ _Id: docSnapshot.id, ...docSnapshot.data() });
   } catch (error) {
     res.status(500).json({ message: "Error fetching course", error });
   }

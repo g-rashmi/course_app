@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { completeCourse } from '../feature/dashsplice';
 import Card from '../components/Card';
+import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -8,21 +9,23 @@ const Dashboard = () => {
 
   const handleCompleteCourse = (courseId) => {
     dispatch(completeCourse(courseId));
+    console.log(courseId)
   };
 
   return (
-    <div>
-      <h1>My Courses</h1>
+    <div className="dashboard-container">
+      <Navbar />
+      <h1 className="text-center my-4">My Courses</h1>
       <div className="container">
-        <div className="row">
+        <div className="row d-flex flex-wrap">
           {enrolledCourses.map((course) => (
-            <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-4">
-              <Card course={course} />
+            <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-5 mt-2"> {course.id}
+{course._Id}       {console.log(course)}     <Card course={course} />
               <button
-                className="btn btn-secondary mt-2 "
-                onClick={() => handleCompleteCourse(course._Id)}
+                className="btn btn-secondary mt-2 w-100"
+                onClick={() => {handleCompleteCourse(course._Id)}}
               >
-                { course.completed===true?"completed": "Marks as completed"}
+                {course.completed ? "Completed" : "Mark as Completed"}
               </button>
             </div>
           ))}
