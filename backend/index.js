@@ -8,7 +8,6 @@ app.use(cors());
 const port =  4000;
 require('dotenv').config();
 
-const admin = require('firebase-admin');
 // Initialize Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert({
