@@ -4,7 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react"; 
 import { searchCourse } from "../feature/coursesplice"; 
 import { useDispatch} from "react-redux";
-import { searchcourse } from "../feature/dashsplice";
+
 
 
 
@@ -13,7 +13,7 @@ import { searchcourse } from "../feature/dashsplice";
   const navigate=useNavigate();
 const dispatch=useDispatch();
   const [search,setSearch]=useState(""); 
-  useEffect(()=>{dispatch(searchCourse(search)),dispatch(searchcourse(search)) },[search])
+  useEffect(()=>{dispatch(searchCourse(search)) },[search])
   const handleSearch = (e) => {
     e.preventDefault(); 
     dispatch(searchCourse(search)); 
