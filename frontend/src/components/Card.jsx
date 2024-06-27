@@ -5,11 +5,7 @@ function Card({ course }) {
   return (
     <div className="card h-100 shadow-sm">
       <div className="card-header d-flex align-items-center">
-        <img
-          src={course.thumbnail}
-          alt=""
-          className="rounded-circle me-2 author-img"
-        />
+       
         <h5 className="mb-0">{course.name}</h5>
       </div>
       <img

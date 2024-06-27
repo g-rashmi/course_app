@@ -19,8 +19,7 @@ const Dashboard = () => {
       <div className="container">
         <div className="row d-flex flex-wrap">
           {enrolledCourses.map((course) => (
-            <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-5 mt-2"> {course.id}
-{course._Id}       {console.log(course)}     <Card course={course} />
+            <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-5 mt-2">      {console.log(course)}     <Card course={course} />
               <button
                 className="btn btn-secondary mt-2 w-100"
                 onClick={() => {handleCompleteCourse(course._Id)}}
