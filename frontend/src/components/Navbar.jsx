@@ -24,7 +24,8 @@ const dispatch=useDispatch();
     <div>
     <nav className="navbar bg-body-tertiary">
     <div className="container-fluid" >
-      <button style={{border:"none"}} className="navbar-brand" onClick={()=>{ 
+      <button style={{border:"none"}} className="navbar-brand" onClick={(e)=>{ 
+        e.preventDefault()
         setSearch(""); 
         navigate("/");
   }} > All Courses </button>

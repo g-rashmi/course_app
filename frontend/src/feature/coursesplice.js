@@ -13,7 +13,7 @@ const courseSlice = createSlice({
   initialState: {
     courses: [],
     status: null,
-    filteredCourses: [], 
+    filteredCourses: [],
   },
   reducers: {
     searchCourse: (state, action) => {
@@ -21,28 +21,36 @@ const courseSlice = createSlice({
       if (!searchTerm) {
         state.filteredCourses = state.courses;
       } else {
-        state.filteredCourses = state.courses.filter(course =>
-          course.name.toLowerCase().includes(searchTerm) ||
-          course.instructor.toLowerCase().includes(searchTerm)
+        state.filteredCourses = state.courses.filter(
+          course =>
+            course.name.toLowerCase().includes(searchTerm) ||
+            course.instructor.toLowerCase().includes(searchTerm)
         );
       }
-    }
+    },
+    enrollcourse: (state, action) => {
+      const courseId = action.payload;
+      const course = state.courses.find(course => course._Id === courseId);
+      if (course) {
+        course.enroll = true;
+      }
+    },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchCourses.pending, (state) => {
+      .addCase(fetchCourses.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchCourses.fulfilled, (state, action) => {
         state.courses = action.payload;
-        state.filteredCourses = action.payload; // Initialize filteredCourses with all courses
+        state.filteredCourses = action.payload; // Assuming initial filtered state is all courses
         state.status = 'succeeded';
       })
-      .addCase(fetchCourses.rejected, (state) => {
+      .addCase(fetchCourses.rejected, state => {
         state.status = 'failed';
       });
-  }
+  },
 });
 
-export const { searchCourse } = courseSlice.actions;
+export const { searchCourse, enrollcourse } = courseSlice.actions;
 export default courseSlice.reducer;

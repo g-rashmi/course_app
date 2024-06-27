@@ -7,7 +7,7 @@ import { fetchCourses } from '../feature/coursesplice';
 function Courses() { 
   const dispatch = useDispatch();
   const loader=useSelector(state=>state.courses.status)
-  const courses = useSelector(state => state.courses.filteredCourses);
+  const courses = useSelector(state => state.courses.filteredCourses); 
   console.log(courses)
     console.log(loader)
   useEffect(() => {

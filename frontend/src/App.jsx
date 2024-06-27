@@ -1,7 +1,7 @@
 
 
 import { BrowserRouter as Router , Routes,Route } from 'react-router-dom'
-import Login from './pages/login' 
+
 import Courses from './pages/Allcourses'
 import Dashboard from './pages/Dashboard'
 import CourseDetailsScreen from './pages/Coursedetail'
@@ -10,8 +10,7 @@ function App() {
     <div> 
 <Router> 
 <Routes> 
-<Route path="/login" element={<Login/>} > 
-</Route> 
+
 <Route path="/" element={<Courses/>} >  
 
 </Route>

@@ -7,11 +7,14 @@ import { backend_url } from '../config';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { enrollCourse } from '../feature/dashsplice';
+import {enrollcourse } from '../feature/coursesplice';
 const CourseDetailsScreen = () => {
   const[value,setValue]=useState("Enroll Now")
   const handleEnroll = () => {
     if (course) {
-      dispatch(enrollCourse(course));
+      dispatch(enrollCourse(course));  
+
+      dispatch(enrollcourse(courseId)) ; 
       toast.success('congrats U enrolled!', {
         position: "top-right",
         autoClose: 5000,
@@ -50,7 +53,8 @@ const CourseDetailsScreen = () => {
       try {
         const response = await axios.get(`${backend_url}/courses/${courseId}`);
         if (response.data) {
-          setCourse(response.data);
+          setCourse(response.data); 
+
         } else {
           setError('No such course found.');
         }
@@ -129,7 +133,7 @@ theme="dark"
           )}
         </div>
       </div>
-      <div className="text-center"> <button type="button" className="btn btn-primary my-3 text-center" onClick={ value==='Enroll Now'?handleEnroll:handleenrolled}> {value}</button> 
+      <div className="text-center"> <button type="button" className="btn btn-primary my-3 text-center" onClick={ value==='Enroll Now'&&course.enroll===false?handleEnroll:handleenrolled}> {value}</button> 
            
            </div>
     </div>
