@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react"; 
 import { searchCourse } from "../feature/coursesplice"; 
 import { useDispatch} from "react-redux";
+import { searchcourse } from "../feature/dashsplice";
 
 
 
@@ -12,10 +13,10 @@ import { useDispatch} from "react-redux";
   const navigate=useNavigate();
 const dispatch=useDispatch();
   const [search,setSearch]=useState(""); 
-  useEffect(()=>{dispatch(searchCourse(search)) },[search])
+  useEffect(()=>{dispatch(searchCourse(search)),dispatch(searchcourse(search)) },[search])
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    dispatch(searchCourse(search)); // Dispatch searchCourse action with search term
+    e.preventDefault(); 
+    dispatch(searchCourse(search)); 
   };
 
     
@@ -26,7 +27,8 @@ const dispatch=useDispatch();
     <div className="container-fluid" >
       <button style={{border:"none"}} className="navbar-brand" onClick={()=>{ 
         setSearch(""); 
-        navigate("/");
+        navigate("/"); 
+
   }} > All Courses </button>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" value ={search} aria-label="Search" onChange={(e)=>{setSearch(e.target.value)}}/>

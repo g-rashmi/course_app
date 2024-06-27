@@ -13,7 +13,7 @@ const courseSlice = createSlice({
   initialState: {
     courses: [],
     status: null,
-    filteredCourses: [], // Initialize with an empty array
+    filteredCourses: [], 
   },
   reducers: {
     searchCourse: (state, action) => {
