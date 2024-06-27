@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 function Card({ course }) {
   const navigate = useNavigate();
   return (
-    <div className="card h-100 shadow-sm">
+    <div className="card h-40 shadow-sm">
       <div className="card-header d-flex align-items-center">
        
         <h5 className="mb-0">{course.name}</h5>
