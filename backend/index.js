@@ -46,18 +46,24 @@ app.get("/courses", async (req, res) => {
 
 app.get("/courses/:id", async (req, res) => {
   try { 
-    
+    let data;
+    if(myCache.has("data")){
+      data=JSON.parse(myCache.get("data")) ; 
+
+} 
+else{
       const docRef = db.collection("courses").doc(req.params.id);
       const docSnapshot = await docRef.get();
   
       if (!docSnapshot.exists) {
         return res.status(404).json({ message: "Course not found" });
       }
+   data={_Id: docSnapshot.id, ...docSnapshot.data() };  
+   myCache.set("data",JSON.stringify(data)) 
   
-  
+    }
     
-    
-    res.status(200).json( {_Id: docSnapshot.id, ...docSnapshot.data() });
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: "Error fetching course", error });
   }
