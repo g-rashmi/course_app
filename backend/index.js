@@ -47,8 +47,8 @@ app.get("/courses", async (req, res) => {
 app.get("/courses/:id", async (req, res) => {
   try { 
     let data;
-    if(myCache.has("data")){
-      data=JSON.parse(myCache.get("data")) ; 
+    if(myCache.has(req.params.id)){
+      data=JSON.parse(myCache.get(req.params.id)) ; 
 
 } 
 else{
@@ -59,7 +59,7 @@ else{
         return res.status(404).json({ message: "Course not found" });
       }
    data={_Id: docSnapshot.id, ...docSnapshot.data() };  
-   myCache.set("data",JSON.stringify(data))
+   myCache.set(docSnapshot.id,JSON.stringify(data))
   
     }
     
