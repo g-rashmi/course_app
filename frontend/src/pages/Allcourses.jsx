@@ -1,6 +1,6 @@
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCourses } from '../feature/coursesplice';
 

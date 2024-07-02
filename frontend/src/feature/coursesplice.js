@@ -8,6 +8,7 @@ export const fetchCourses = createAsyncThunk('courses/fetchCourses', async () =>
   return response.data;
 });
 
+
 const courseSlice = createSlice({
   name: 'courses',
   initialState: {
@@ -31,8 +32,13 @@ const courseSlice = createSlice({
     enrollcourse: (state, action) => {
       const courseId = action.payload;
       const course = state.courses.find(course => course._Id === courseId);
-      if (course) {
+      if (course&&!course.enroll) {
         course.enroll = true;
+      }
+      
+      const filteredCourse = state.filteredCourses.find(course => course._Id === courseId);
+      if (filteredCourse && !filteredCourse.enroll) {
+        filteredCourse.enroll = true;
       }
     },
   },
@@ -43,7 +49,7 @@ const courseSlice = createSlice({
       })
       .addCase(fetchCourses.fulfilled, (state, action) => {
         state.courses = action.payload;
-        state.filteredCourses = action.payload; // Assuming initial filtered state is all courses
+        state.filteredCourses = action.payload; 
         state.status = 'succeeded';
       })
       .addCase(fetchCourses.rejected, state => {
